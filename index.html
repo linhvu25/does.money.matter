@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--  <link rel="stylesheet" href="docSlider.css">-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <style>
+      .inner {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2em;
+      }
+    </style>
+
+    <title>Does Money Matter?</title>
+  </head>
+  <body>
+    <div class="docSlider">
+      <section>
+        <div class="inner">
+          <div class="row" style="height: 50vh; padding: 0">
+            <div class="align-self-center px-4" id="heading">
+              <h1 class="title">Does Money Matter?</h1>
+              <h3 class="subtitle">
+                All about recent senate campaign donations
+              </h3>
+              <p id="context">
+                Campaign funding has a profound impact on the political
+                landscape and scrutinizing where these funds come from can tell
+                us a lot about who a candidate is and the type of leader they
+                will be. Insights about where money is sourced from when it
+                comes to political campaigns give the ordinary constituent
+                important information that can aid decisions about who to
+                support, who to campaign for, and ultimately where their vote
+                should go. Money holds power, and when it comes to campaign
+                donations, that money holds power over policy decisions and
+                public trust. Understanding where these funds come from is key
+                to having transparent, fair, informed, and accountable political
+                races.
+              </p>
+              <p
+                style="
+                  padding-left: 300px;
+                  padding-right: 300px;
+                  color: darkgreen;
+                  font-size: 25px;
+                  font-weight: bold;
+                "
+              >
+                So then we ask...
+              </p>
+              <p style="padding-left: 300px; padding-right: 300px">
+                <i>
+                  Who funds some of our most high-profile political candidates?
+                  <br />
+                  What industries do they come from? <br />
+                  How much are these donors willing to shell out to have some
+                  sway in a given race?
+                </i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="inner">
+          <div class="col justify-content-center align-items-center py-4">
+            <div class="row" id="map-title"></div>
+            <div class="row justify-content-center pb-3">
+              <div class="col-auto text-center" id="map-desc">
+                <h6>
+                  The cost displayed is the total money raised by all candidates
+                  in the race.<br />
+                  <b>Click</b> on senate races that cost more than $100M to
+                  learn more.
+                </h6>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-7" id="map-svg"></div>
+              <div class="col-2">
+                <label for="map-fill-select" class="select-text-legend"
+                  ><b style="color: darkgreen">Select</b> map fill:</label
+                >
+                <select class="form-control" id="map-fill-select">
+                  <option value="all" selected>All states</option>
+                  <option value="100m">>$100M states</option>
+                </select>
+                <p class="text-legend" style="padding: 0px; padding-top: 10px">
+                  States with more than $100M in total contributions are
+                  <b style="color: darkgreen">clickable</b>
+                </p>
+                <div class="row justify-content-center">
+                  <div class="col-auto" id="map-scale"></div>
+                  <div class="col-auto" id="circle-scale"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="inner">
+          <div class="col">
+            <div class="row" id="tree-map-title"></div>
+            <h6 class="row justify-content-center">Campaign donors occupy a variety of sectors.
+              Select a candidate and sector and see how it breaks down for that campaign.
+            </h6>
+            <hr>
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <label for="map-fill-select" class="select-text-legend"
+                  ><b style="color: darkgreen">Select</b> sectors:</label
+                >
+                <select class="form-control" id="map-tree-select">
+                  <option value="none" selected>
+                    Include Coded and Itemized Contributions
+                  </option>
+                  <option value="unitemized">Include Unitemized</option>
+                  <option value="uncoded">Include Uncoded</option>
+                  <option value="all">Include All Sectors</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label
+                  for="map-tree-candidate-select"
+                  class="select-text-legend"
+                >
+                  <b style="color: darkgreen">Select</b> candidate:
+                </label>
+                <select
+                  class="form-control"
+                  id="map-tree-candidate-select"
+                ></select>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <p style="text-align: center; width:80%">Those that fall below a state's reporting threshold for disclosing identifying information about the donor.
+                For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not
+                required to be identified by name.
+                The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
+            </div>
+            <div class="row" id="treeMap"></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="inner">
+          <div class="col">
+            <div class="row justify-content-center">
+              <p style="width:65%; text-align: center">Each sector is composed of
+              many different businesses that occupy that field. <br>
+                <b> Click on a sector on the treemap above </b>
+                to see how businesses in those sectors contributed to both candidates in a campaign.  </p>
+            </div>
+            <hr>
+            <div class="row" id="bar-chart-title" style="padding-top: 0px">
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-2">
+                <label for="chart-type-select" class="select-text-legend"><b style="color: darkgreen">Select</b> chart type:</label
+                >
+                <select class="form-control" id="chart-type-select">
+                  <option value="radial">Radial</option>
+                  <option value="horizontal" selected>Horizontal</option>
+                </select>
+              </div>
+              <div class="col">
+                <div class="row justify-content-center" id="checkboxContainer"></div>
+              </div>
+              <div class="col-2 checkbox-label" style="margin-top: 30px">
+                <button onclick="myDivergingViz.getCheckedCandidates()"> Update chart! </button>
+              </div>
+            </div>
+            <div class="row justify-content-center" id="barChart">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- BOOTSTRAP -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- d3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v2.min.js"></script>
+
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+    <!--    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+    <!-- OWN JS -->
+    <script src="js/mapVis.js"></script>
+    <script src="js/circleVis.js"></script>
+    <script src="js/treeMap.js"></script>
+    <script src="js/divergingBar.js"></script>
+<!--    <script src="js/divBar.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/docSlider.js"></script>
+    <script>
+      docSlider.init();
+    </script>
+  </body>
+</html>
